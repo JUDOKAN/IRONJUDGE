@@ -1,0 +1,95 @@
+$primary: #00ffc8;
+$bg: #111;
+$text: #eee;
+$navbar-bg: #1a1a1a;
+$box-bg: #1c1c1c;
+$link-default: #ccc;
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: $bg;
+  color: $text;
+}
+
+.navbar {
+  background-color: $navbar-bg;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+      color: $link-default;
+      text-decoration: none;
+
+      &.active,
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}
+
+.faq-section {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .faq-item {
+    background-color: $box-bg;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+    margin-bottom: 2rem;
+
+    h3 {
+      color: $primary;
+      margin-top: 0;
+    }
+
+    p {
+      color: $link-default;
+    }
+  }
+}
+
+footer {
+  background-color: $navbar-bg;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 3rem;
+
+  a {
+    color: $link-default;
+    margin: 0 0.5rem;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .social-media {
+    text-align: center;
+
+    img {
+      margin: 0 0.25rem;
+    }
+
+    span {
+      display: block;
+      margin-top: 0.5rem;
+    }
+  }
+}

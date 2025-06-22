@@ -1,0 +1,91 @@
+$primary: #00ffc8;
+$bg: #101010;
+$text: #f1f1f1;
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: $bg;
+  color: $text;
+}
+
+.navbar {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+
+    a {
+      color: #ccc;
+      text-decoration: none;
+
+      &.active,
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}
+
+.flash-messages {
+  background-color: #ff4d4d;
+  padding: 1rem;
+  text-align: center;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    input {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #2a2a2a;
+      color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: $primary;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darken($primary, 10%);
+      }
+    }
+  }
+
+  .alt-sec, .guest-option {
+    text-align: center;
+    margin-top: 1rem;
+
+    a {
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+}

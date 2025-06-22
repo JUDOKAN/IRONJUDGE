@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ 'Kayıt Ol' if form_type == 'kayit' else 'Giriş Yap' }} - Web Gamer Bot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">TITANTALEGAMES</div><img src="{{ url_for('static', filename='img/titantalegames.png') }}" /> 
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index', lang=lang) }}">{{ 'Ana Sayfa' if lang == 'tr' else 'Home' }}</a></li>
+        <li><a href="{{ url_for('game', lang=lang) }}">{{ 'Oyunlar' if lang == 'tr' else 'Games' }}</a></li>
+        <li><a href="{{ url_for('faq', lang=lang) }}">{{ 'S.S.S.' if lang == 'tr' else 'FAQ' }}</a></li>
+        {% if user and user != 'Ziyaretçi' %}
+          <li><a href="{{ url_for('cikis', lang=lang) }}">{{ 'Çıkış Yap' if lang == 'tr' else 'Logout' }}</a></li>
+        {% elif user == 'Ziyaretçi' %}
+          <li><a href="{{ url_for('cikis', lang=lang) }}">{{ 'Çık' if lang == 'tr' else 'Exit' }}</a></li>
+        {% else %}
+          <li><a href="{{ url_for('giris', lang=lang) }}">{{ 'Giriş' if lang == 'tr' else 'Login' }}</a></li>
+          <li><a href="{{ url_for('kayit', lang=lang) }}">{{ 'Kayıt' if lang == 'tr' else 'Sign Up' }}</a></li>
+        {% endif %}
+
+        <!-- Dil Değiştirme Butonu -->
+        <li>
+          {% if lang == 'tr' %}
+            <a href="{{ request.path }}?lang=en">
+              <img src="{{ url_for('static', filename='img/ingilizce.png') }}" alt="EN" width="20" style="vertical-align: middle;"/> English
+            </a>
+          {% else %}
+            <a href="{{ request.path }}?lang=tr">
+              <img src="{{ url_for('static', filename='img/türkçe.png') }}" alt="TR" width="20" style="vertical-align: middle;"/> Türkçe
+            </a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Form Alanı -->
+  <main class="form-container">
+
+    {% if not user %}
+      <h1>{{ 'Kayıt Ol' if form_type == 'kayit' else 'Giriş Yap' }}</h1>
+
+      <form action="{{ url_for('kayit') if form_type == 'kayit' else url_for('giris') }}" method="post">
+        {% if form_type == 'kayit' %}
+          <input type="text" name="username" placeholder="Kullanıcı Adı" required />
+        {% endif %}
+        <input type="email" name="email" placeholder="E-posta" required />
+        <input type="password" name="password" placeholder="Şifre" required />
+        <button type="submit">{{ 'Kayıt Ol' if form_type == 'kayit' else 'Giriş Yap' }}</button>
+      </form>
+
+      <div class="alt-sec">
+        {% if form_type == 'kayit' %}
+          <p>Zaten hesabın var mı? <a href="{{ url_for('giris') }}">Giriş Yap</a></p>
+        {% else %}
+          <p>Hesabın yok mu? <a href="{{ url_for('kayit') }}">Kayıt Ol</a></p>
+        {% endif %}
+      </div>
+
+      <div class="guest-option">
+        <p>Veya <a href="{{ url_for('oturumsuz_devam') }}">Oturumsuz Devam Et</a></p>
+      </div>
+
+    {% else %}
+      <div style="text-align:center;">
+        <h2>Zaten giriş yaptınız, {{ user }}!</h2>
+        <p>Ana sayfaya yönlendiriliyorsunuz...</p>
+        <meta http-equiv="refresh" content="2;url={{ url_for('index') }}" />
+      </div>
+    {% endif %}
+
+  </main>
+
+  <!-- Footer -->
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Gamer Bot - Ana Sayfa</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+</head>
+<body>
+
+  
+
+        
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-media" style="text-align: center;">
+      <a href="#"><img src="/static/img/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="/static/img/youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="/static/img/whatsapp.png" alt="WhatsApp"></a>
+      <a href="#"><img src="/static/img/e-mail.png" alt="E-mail"></a>
+      <a href="https://discord.gg/YOURINVITECODE" target="_blank"><img src="/static/img/discord.png" alt="Discord"></a>
+      <div>
+        <span>📞 0533 955 87 52</span><br>
+        <span>📍 Türkiye / Kayseri</span>
+      </div>
+    </div>
+    <p style="text-align: center;">© 2025 Web Gamer Bot | Mehmet Kalaycı Web Geliştirme</p>
+  </footer>
+
+</body>
+</html>
+

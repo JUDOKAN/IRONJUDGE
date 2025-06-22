@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ 'S.S.S. - Web Gamer Bot' if lang == 'tr' else 'FAQ - Web Gamer Bot' }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">TITANTALEGAMES</div>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index', lang=lang) }}">{{ 'Ana Sayfa' if lang == 'tr' else 'Home' }}</a></li>
+        <li><a href="{{ url_for('game', lang=lang) }}">{{ 'Oyunlar' if lang == 'tr' else 'Games' }}</a></li>
+        <li><a href="{{ url_for('faq', lang=lang) }}" class="active">{{ 'S.S.S.' if lang == 'tr' else 'FAQ' }}</a></li>
+
+        {% if user and user != 'Ziyaretçi' %}
+          <li><a href="{{ url_for('cikis', lang=lang) }}">{{ 'Çıkış Yap' if lang == 'tr' else 'Logout' }}</a></li>
+        {% elif user == 'Ziyaretçi' %}
+          <li><a href="{{ url_for('cikis', lang=lang) }}">{{ 'Çık' if lang == 'tr' else 'Exit' }}</a></li>
+        {% else %}
+          <li><a href="{{ url_for('giris', lang=lang) }}">{{ 'Giriş' if lang == 'tr' else 'Login' }}</a></li>
+          <li><a href="{{ url_for('kayit', lang=lang) }}">{{ 'Kayıt' if lang == 'tr' else 'Sign Up' }}</a></li>
+        {% endif %}
+
+        <!-- Dil Değiştirici -->
+        <li>
+          {% if lang == 'tr' %}
+            <a href="{{ request.path }}?lang=en">
+              <img src="{{ url_for('static', filename='img/ingilizce.png') }}" width="20" alt="EN" style="vertical-align: middle;" /> English
+            </a>
+          {% else %}
+            <a href="{{ request.path }}?lang=tr">
+              <img src="{{ url_for('static', filename='img/türkçe.png') }}" width="20" alt="TR" style="vertical-align: middle;" /> Türkçe
+            </a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- S.S.S Alanı -->
+  <main class="faq-section">
+    <h1>{{ 'Sıkça Sorulan Sorular' if lang == 'tr' else 'Frequently Asked Questions' }}</h1>
+    {% if user %}
+      <p style="text-align:center; font-style: italic;">{{ 'Merak ettiklerini senin için derledik' if lang == 'tr' else 'We compiled what you wonder for you' }}, {{ user }} 👇</p>
+    {% else %}
+      <p style="text-align:center;">{{ 'Cevaplara göz atmak için en doğru yerdesin.' if lang == 'tr' else 'You are in the right place to check the answers.' }} 👇</p>
+    {% endif %}
+
+    <div class="faq-item">
+      <h3>🎮 {{ 'Oyunlar neden sadece 2 gün çevrim içi oynanabiliyor?' if lang == 'tr' else 'Why are the games only online for 2 days?' }}</h3>
+      <p>{{ 'Deneme süreci sunuyoruz...' if lang == 'tr' else 'We provide a trial period...' }}</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>⏱️ {{ 'Discord bot ne zaman aktif oluyor?' if lang == 'tr' else 'When does the Discord bot activate?' }}</h3>
+      <p>{{ 'İlk 2 gün web üzerinden oynarsın...' if lang == 'tr' else 'You play on the web for the first 2 days...' }}</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>🎁 {{ 'Hediye oyun nasıl alınıyor?' if lang == 'tr' else 'How is the gift game obtained?' }}</h3>
+      <p>{{ 'Oyunlardan herhangi birini indirdiğinde...' if lang == 'tr' else 'When you download a game...' }}</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>📦 {{ 'Oyunu indirdikten sonra kalıcı mı oluyor?' if lang == 'tr' else 'Is the game permanent after download?' }}</h3>
+      <p>{{ 'Evet. İndirilen oyunlar...' if lang == 'tr' else 'Yes. Downloaded games...' }}</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>👤 {{ 'Oturumsuz kullanıcılar her özelliği kullanabilir mi?' if lang == 'tr' else 'Can guest users use all features?' }}</h3>
+      <p>{{ 'Hayır. Oturumsuz kullanıcılar sadece göz atabilir...' if lang == 'tr' else 'No. Guest users can only browse...' }}</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-media">
+      <a href="#"><img src="/static/img/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="/static/img/youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="/static/img/whatsapp.png" alt="WhatsApp"></a>
+      <a href="#"><img src="/static/img/e-mail.png" alt="E-mail"></a>
+      <a href="https://discord.gg/YOURINVITECODE" target="_blank"><img src="/static/img/discord.png" alt="Discord"></a>
+      <div>
+        <span>📞 0533 955 87 52</span><br>
+        <span>📍 Türkiye / Kayseri</span>
+      </div>
+    </div>
+    <p style="text-align:center;">© 2025 Web Gamer Bot | Mehmet Kalaycı Web Geliştirme</p>
+  </footer>
+
+</body>
+</html>

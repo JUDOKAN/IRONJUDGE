@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oyunlar - Web Gamer Bot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">TITANTALEGAMES</div><img src="{{ url_for('static', filename='img/titantalegames.png') }}" /> 
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index', lang=lang) }}">{{ 'Ana Sayfa' if lang == 'tr' else 'Home' }}</a></li>
+        <li><a href="{{ url_for('game', lang=lang) }}">{{ 'Oyunlar' if lang == 'tr' else 'Games' }}</a></li>
+        <li><a href="{{ url_for('faq', lang=lang) }}">{{ 'S.S.S.' if lang == 'tr' else 'FAQ' }}</a></li>
+        {% if user and user != 'Ziyaretçi' %}
+          <li><a href="{{ url_for('cikis', lang=lang) }}">{{ 'Çıkış Yap' if lang == 'tr' else 'Logout' }}</a></li>
+        {% elif user == 'Ziyaretçi' %}
+          <li><a href="{{ url_for('cikis', lang=lang) }}">{{ 'Çık' if lang == 'tr' else 'Exit' }}</a></li>
+        {% else %}
+          <li><a href="{{ url_for('giris', lang=lang) }}">{{ 'Giriş' if lang == 'tr' else 'Login' }}</a></li>
+          <li><a href="{{ url_for('kayit', lang=lang) }}">{{ 'Kayıt' if lang == 'tr' else 'Sign Up' }}</a></li>
+        {% endif %}
+
+        <!-- Dil Değiştirme Butonu -->
+        <li>
+          {% if lang == 'tr' %}
+            <a href="{{ request.path }}?lang=en">
+              <img src="{{ url_for('static', filename='img/ingilizce.png') }}" alt="EN" width="20" style="vertical-align: middle;"/> English
+            </a>
+          {% else %}
+            <a href="{{ request.path }}?lang=tr">
+              <img src="{{ url_for('static', filename='img/türkçe.png') }}" alt="TR" width="20" style="vertical-align: middle;"/> Türkçe
+            </a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main class="games-section">
+    <h1>📂 Oyunlar</h1>
+    <p>
+      {% if user %}
+        Hoş geldin {{ user }}! Aşağıdan oyunu hemen başlatabilirsin 🎮
+      {% else %}
+        Oyunu oynamak için giriş yapmalısın veya kayıt olmalısın!
+      {% endif %}
+    </p>
+
+    <div class="game-grid">
+      <div class="game-card">
+        <img src="{{ url_for('static', filename='img/oyun1kapak.png') }}" alt="Oyun 1">
+        <h3>Boxer 2D</h3>
+        <a href="{{ url_for('oyun1') }}" target="_blank" class="download-btn">OYNA</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+
+<!-- Footer -->
+<footer>
+  <div class="social-media" style="text-align: center;">
+    <a href="#"><img src="/static/img/instagram.png" alt="Instagram"></a>
+    <a href="#"><img src="/static/img/youtube.png" alt="YouTube"></a>
+    <a href="#"><img src="/static/img/whatsapp.png" alt="WhatsApp"></a>
+    <a href="#"><img src="/static/img/e-mail.png" alt="E-mail"></a>
+    <a href="https://discord.gg/YOURINVITECODE" target="_blank"><img src="/static/img/discord.png" alt="Discord"></a>
+    <div>
+      <span>📞 0533 955 87 52</span><br>
+      <span>📍 Türkiye / Kayseri</span>
+    </div>
+  </div>
+  <p style="text-align: center;">© 2025 Web Gamer Bot | Mehmet Kalaycı Web Geliştirme</p>
+</footer>
+
+</body>
+</html>
