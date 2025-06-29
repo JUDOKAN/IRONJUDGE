@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 app = Flask(__name__)
 app.secret_key = 'webgamer_secret_key'
 
+
 # Dil kontrol fonksiyonu
 def get_lang():
     lang = request.args.get('lang', 'tr')
@@ -27,11 +28,35 @@ def oyun1():
     lang = get_lang()
     return render_template('oyun1.html', user=session.get('user'), lang=lang)
 
+@app.route('/oyun2')
+def oyun2():
+    lang = get_lang()
+    return render_template('oyun2.html', user=session.get('user'), lang=lang)
+
+@app.route('/oyun3')
+def oyun3():
+    lang = get_lang()
+    return render_template('oyun3.html', user=session.get('user'), lang=lang)
+
+@app.route('/oyun4')
+def oyun4():
+    lang = get_lang()
+    return render_template('oyun4.html', user=session.get('user'), lang=lang)
+
+@app.route('/oyun5')
+def oyun5():
+    lang = get_lang()
+    return render_template('oyun5.html', user=session.get('user'), lang=lang)
 
 @app.route('/faq')
 def faq():
     lang = get_lang()
     return render_template('faq.html', user=session.get('user'), lang=lang)
+
+@app.route('/hakkimizda')
+def hakkimizda():
+    lang = get_lang()
+    return render_template('hakkimizda.html', user=session.get('user'), lang=lang)
 
 @app.route('/kayit', methods=['GET', 'POST'])
 def kayit():
